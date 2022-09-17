@@ -17,6 +17,12 @@ const buttonStyle = css`
     background-color: #64748b;
   }
 `;
+const hueStyle = css`
+  padding: 10px;
+`;
+const lumStyle = css`
+  padding: 10px;
+`;
 
 function App() {
   const [color, setColor] = useState(randomcolor());
@@ -48,62 +54,65 @@ function App() {
       >
         <div> Generated Color: {color}</div>
       </div>
-      <br />
-      {/* selector for Hue */}
-      <label htmlFor="hue">Select Hue</label>
-      <select
-        style={{ marginLeft: '20px' }}
-        value={hue}
-        onChange={(event) => {
-          setHue(event.target.value);
-          const newColor = randomcolor.randomColor({
-            luminosity: lightness,
-            hue: event.target.value,
-          });
-          setColor(newColor);
-        }}
-      >
-        {/* Creating selector option of Hue with map and using to lowercase to use value in lowecase */}
-        {['Red', 'Green', 'Blue'].map((item) => (
-          <option value={item.toLowerCase()} key={item}>
-            {item}
-          </option>
-        ))}
-      </select>
+      <div css={hueStyle}>
+        {/* selector for Hue */}
+        <label htmlFor="hue">Select Hue</label>
+        <select
+          style={{ marginLeft: '20px' }}
+          value={hue}
+          onChange={(event) => {
+            setHue(event.target.value);
+            const newColor = randomcolor({
+              luminosity: lightness,
+              hue: event.target.value,
+            });
+            setColor(newColor);
+          }}
+        >
+          {/* Creating selector option of Hue with map and using to lowercase to use value in lowecase */}
+          {['Red', 'Green', 'Blue'].map((item) => (
+            <option value={item.toLowerCase()} key={item}>
+              {item}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div css={lumStyle}>
+        {/* selector for luminosity */}
+        <label htmlFor="lum">Select luminosity</label>
+        <select
+          style={{ marginLeft: '20px' }}
+          value={lightness}
+          onChange={(event) => {
+            setLightness(event.target.value);
 
-      {/* selector for luminosity */}
-      <label htmlFor="lum">Select luminosity</label>
-      <select
-        style={{ marginLeft: '20px' }}
-        value={lightness}
-        onChange={(event) => {
-          setLightness(event.target.value);
-
-          const newColor = randomcolor.randomColor({
-            luminosity: event.target.value,
-            hue,
-          });
-          setColor(newColor);
-        }}
-      >
-        {/* Creating selector option of Luminosity with map and using to lowercase to use value in lowecase */}
-        {['Dark', 'Light'].map((item) => (
-          <option value={item.toLocaleLowerCase()} key={item}>
-            {item}
-          </option>
-        ))}
-      </select>
-
+            const newColor = randomcolor({
+              luminosity: event.target.value,
+              hue,
+            });
+            setColor(newColor);
+          }}
+        >
+          {/* Creating selector option of Luminosity with map and using to lowercase to use value in lowecase */}
+          {['Dark', 'Light'].map((item) => (
+            <option value={item.toLocaleLowerCase()} key={item}>
+              {item}
+            </option>
+          ))}
+        </select>
+      </div>
       {/* Button to generate random color */}
-      <button
-        css={buttonStyle}
-        onClick={() => {
-          const newColor = randomcolor.randomColor();
-          setColor(newColor);
-        }}
-      >
-        Generate
-      </button>
+      <div>
+        <button
+          css={buttonStyle}
+          onClick={() => {
+            const newColor = randomcolor();
+            setColor(newColor);
+          }}
+        >
+          Generate
+        </button>
+      </div>
     </div>
   );
 }
