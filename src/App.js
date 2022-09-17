@@ -19,7 +19,7 @@ const buttonStyle = css`
 `;
 
 function App() {
-  const [color, setColor] = useState('#A23F2A');
+  const [color, setColor] = useState(randomcolor());
   const [hue, setHue] = useState('');
   const [lightness, setLightness] = useState(' ');
   return (
