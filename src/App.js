@@ -22,6 +22,7 @@ function App() {
   const [color, setColor] = useState(randomcolor());
   const [hue, setHue] = useState('');
   const [lightness, setLightness] = useState(' ');
+
   return (
     <div className="App">
       <h1
@@ -48,32 +49,56 @@ function App() {
         <div> Generated Color: {color}</div>
       </div>
       <br />
-      <label>
-        Hue:
-        <input
-          style={{ padding: '5px', marginLeft: '10px' }}
-          value={hue}
-          onChange={(event) => setHue(event.target.value)}
-        />
-      </label>
-      <label style={{ marginLeft: '20px' }}>
-        Lightness:
-        <input
-          style={{ padding: '5px', marginLeft: '10px' }}
-          value={lightness}
-          onChange={(event) => {
-            setLightness(event.target.value);
-          }}
-        />
-      </label>
-      <br />
+      {/* selector for Hue */}
+      <label htmlFor="hue">Select Hue</label>
+      <select
+        style={{ marginLeft: '20px' }}
+        value={hue}
+        onChange={(event) => {
+          setHue(event.target.value);
+          const newColor = randomcolor.randomColor({
+            luminosity: lightness,
+            hue: event.target.value,
+          });
+          setColor(newColor);
+        }}
+      >
+        {/* Creating selector option of Hue with map and using to lowercase to use value in lowecase */}
+        {['Red', 'Green', 'Blue'].map((item) => (
+          <option value={item.toLowerCase()} key={item}>
+            {item}
+          </option>
+        ))}
+      </select>
+
+      {/* selector for luminosity */}
+      <label htmlFor="lum">Select luminosity</label>
+      <select
+        style={{ marginLeft: '20px' }}
+        value={lightness}
+        onChange={(event) => {
+          setLightness(event.target.value);
+
+          const newColor = randomcolor.randomColor({
+            luminosity: event.target.value,
+            hue,
+          });
+          setColor(newColor);
+        }}
+      >
+        {/* Creating selector option of Luminosity with map and using to lowercase to use value in lowecase */}
+        {['Dark', 'Light'].map((item) => (
+          <option value={item.toLocaleLowerCase()} key={item}>
+            {item}
+          </option>
+        ))}
+      </select>
+
+      {/* Button to generate random color */}
       <button
         css={buttonStyle}
         onClick={() => {
-          const newColor = randomcolor.randomColor({
-            luminosity: lightness,
-            hue: hue,
-          });
+          const newColor = randomcolor.randomColor();
           setColor(newColor);
         }}
       >
