@@ -1,6 +1,22 @@
+/** @jsxImportSource @emotion/react */
+
 import './App.css';
+import { css } from '@emotion/react';
 import randomcolor from 'randomcolor';
 import { useState } from 'react';
+
+const buttonStyle = css`
+  width: 100px;
+  background-color: #0066cc;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+  &:hover {
+    background-color: #64748b;
+  }
+`;
 
 function App() {
   const [color, setColor] = useState(' ');
@@ -17,8 +33,8 @@ function App() {
       </h1>
       <div
         style={{
-          width: 400,
-          height: 400,
+          width: '400px',
+          height: '400px',
           margin: '0 auto',
           display: 'flex',
           justifyContent: 'center',
@@ -29,7 +45,7 @@ function App() {
           borderColor: '#ffe6e6',
         }}
       >
-        {`Generated Color:${color}`}
+        <div> {`Generated Color:${color}`}</div>
       </div>
       <br />
       <label>
@@ -45,22 +61,14 @@ function App() {
         <input
           style={{ padding: '5px', marginLeft: '10px' }}
           value={lightness}
-          onChange={(event) => setLightness(event.target.value)}
+          onChange={(event) => {
+            setLightness(event.target.value);
+          }}
         />
       </label>
       <br />
       <button
-        style={{
-          borderRadius: '6px',
-          border: '1px solid',
-          borderColor: 'black',
-          color: '#ff8080',
-          fontSize: '15px',
-          padding: '20px 36px',
-          marginTop: '30px',
-          backgroundColor: '#ccf2ff',
-          fontWeight: 'bold',
-        }}
+        css={buttonStyle}
         onClick={() => {
           const newColor = randomcolor.randomColor({
             luminosity: lightness,
