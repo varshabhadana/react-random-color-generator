@@ -45,7 +45,7 @@ function App() {
           borderColor: '#ffe6e6',
         }}
       >
-        <div> {`Generated Color:${color}`}</div>
+        <div> {`Generated Color: ${color}`}</div>
       </div>
       <br />
       <label>
