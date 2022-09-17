@@ -52,7 +52,7 @@ function App() {
           borderColor: '#ffe6e6',
         }}
       >
-        <div> Generated Color: {color}</div>
+        Generated Color: {color}
       </div>
       <div css={hueStyle}>
         {/* selector for Hue */}
