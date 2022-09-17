@@ -30,7 +30,7 @@ function App() {
   const [lightness, setLightness] = useState(' ');
 
   return (
-    <div className="App">
+    <>
       <h1
         style={{
           color: 'red',
@@ -52,7 +52,7 @@ function App() {
           borderColor: '#ffe6e6',
         }}
       >
-        <div> Generated Color: {color}</div>
+        <div>Generated Color: {color}</div>
       </div>
       <div css={hueStyle}>
         {/* selector for Hue */}
@@ -113,7 +113,7 @@ function App() {
           Generate
         </button>
       </div>
-    </div>
+    </>
   );
 }
 
