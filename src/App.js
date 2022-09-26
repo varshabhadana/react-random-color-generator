@@ -62,11 +62,6 @@ function App() {
           value={hue}
           onChange={(event) => {
             setHue(event.target.value);
-            const newColor = randomcolor({
-              luminosity: lightness,
-              hue: event.target.value,
-            });
-            setColor(newColor);
           }}
         >
           {/* Creating selector option of Hue with map and using to lowercase to use value in lowecase */}
@@ -85,17 +80,11 @@ function App() {
           value={lightness}
           onChange={(event) => {
             setLightness(event.target.value);
-
-            const newColor = randomcolor({
-              luminosity: event.target.value,
-              hue,
-            });
-            setColor(newColor);
           }}
         >
           {/* Creating selector option of Luminosity with map and using to lowercase to use value in lowecase */}
           {['Dark', 'Light'].map((item) => (
-            <option value={item.toLocaleLowerCase()} key={item}>
+            <option value={item.toLowerCase()} key={item}>
               {item}
             </option>
           ))}
@@ -106,7 +95,7 @@ function App() {
         <button
           css={buttonStyle}
           onClick={() => {
-            setColor(randomcolor());
+            setColor(randomcolor({ luminosity: lightness, hue: hue }));
           }}
         >
           Generate
