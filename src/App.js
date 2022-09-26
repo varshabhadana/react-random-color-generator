@@ -52,8 +52,9 @@ function App() {
     <div className="App">
       <h1 css={heading}>Random Color Generator</h1>
       <Container backgroundColor={color}>Generated Color: {color}</Container>
+
+      {/* selector for Hue */}
       <div css={hueStyle}>
-        {/* selector for Hue */}
         <label htmlFor="hue">Select Hue</label>
         <select
           id="hue"
@@ -71,8 +72,8 @@ function App() {
           ))}
         </select>
       </div>
+      {/* selector for luminosity */}
       <div css={lumStyle}>
-        {/* selector for luminosity */}
         <label htmlFor="lum">Select luminosity</label>
         <select
           css={selector}
