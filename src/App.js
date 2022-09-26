@@ -2,6 +2,7 @@
 
 import './App.css';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import randomcolor from 'randomcolor';
 import { useState } from 'react';
 
@@ -23,6 +24,24 @@ const hueStyle = css`
 const lumStyle = css`
   padding: 10px;
 `;
+const heading = css`
+  color: red;
+`;
+const Container = styled.div`
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) => props.backgroundColor};
+  border-radius: 6px;
+  border: 5px solid;
+  border-color: #ffe6e6;
+`;
+const selector = css`
+  margin-left: 20px;
+`;
 
 function App() {
   const [color, setColor] = useState(randomcolor());
@@ -31,35 +50,14 @@ function App() {
 
   return (
     <div className="App">
-      <h1
-        style={{
-          color: 'red',
-        }}
-      >
-        Random Color Generator
-      </h1>
-      <div
-        style={{
-          width: '400px',
-          height: '400px',
-          margin: '0 auto',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: color,
-          borderRadius: '6px',
-          border: '5px solid',
-          borderColor: '#ffe6e6',
-        }}
-      >
-        Generated Color: {color}
-      </div>
+      <h1 css={heading}>Random Color Generator</h1>
+      <Container backgroundColor={color}>Generated Color: {color}</Container>
       <div css={hueStyle}>
         {/* selector for Hue */}
         <label htmlFor="hue">Select Hue</label>
         <select
           id="hue"
-          style={{ marginLeft: '20px' }}
+          css={selector}
           value={hue}
           onChange={(event) => {
             setHue(event.target.value);
@@ -77,8 +75,8 @@ function App() {
         {/* selector for luminosity */}
         <label htmlFor="lum">Select luminosity</label>
         <select
+          css={selector}
           id="lum"
-          style={{ marginLeft: '20px' }}
           value={lightness}
           onChange={(event) => {
             setLightness(event.target.value);
