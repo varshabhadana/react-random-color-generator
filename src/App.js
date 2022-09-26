@@ -58,6 +58,7 @@ function App() {
         {/* selector for Hue */}
         <label htmlFor="hue">Select Hue</label>
         <select
+          id="hue"
           style={{ marginLeft: '20px' }}
           value={hue}
           onChange={(event) => {
@@ -76,6 +77,7 @@ function App() {
         {/* selector for luminosity */}
         <label htmlFor="lum">Select luminosity</label>
         <select
+          id="lum"
           style={{ marginLeft: '20px' }}
           value={lightness}
           onChange={(event) => {
